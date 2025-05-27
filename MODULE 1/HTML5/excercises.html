@@ -1,0 +1,312 @@
+<!-- EX 1: Create the HTML5 Base Template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal</title>
+    <!-- index.html -->
+<!-- Include this in your HTML -->
+<script src="main.js"></script>
+  <!-- EX 3: Internal CSS for Styling and Welcome Banner -->
+  <style>
+    /* EX 2: Navigation Styling */
+    nav { background: #f0f0f0; padding: 10px; }
+    nav a { margin: 0 15px; text-decoration: none; color: #333; }
+
+    /* EX 3: Welcome Banner and Highlight Class */
+    #welcomeBanner {
+      background: #2196f3;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .highlight { background: blue; font-weight: bold; }
+
+    /* EX 4: Gallery Images */
+    .gallery-img {
+      border: 3px solid #2196f3;
+      width: 120px;
+      height: 80px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .gallery-img.enlarged {
+      transform: scale(1.7);
+      z-index: 10;
+    }
+
+    /* EX 4: Table Layout */
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    caption {
+      caption-side: top;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    td { padding: 8px; }
+
+    /* EX 5: Form Styling */
+    form {
+      background: #f9f9f9;
+      padding: 20px;
+      max-width: 400px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #ccc;
+    }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+    }
+
+    /* EX 6: Feedback Character Count */
+    #charCount {
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    /* EX 5: Output and Feedback */
+    #outputMsg {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* EX 7: Video Message Styling */
+    #videoMsg {
+      color: #2196f3;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* EX 9: Geolocation Result */
+    #geoResult {
+      margin-top: 10px;
+      color: #333;
+    }
+
+    /* General Buttons */
+    .btn {
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn.secondary { background: #888; }
+  </style>
+
+  <!-- EX 5–9: JavaScript for Events, Validation, Storage, and Geo -->
+  <script>
+    // EX 5: Form submission output
+    function showConfirmation(e) {
+      e.preventDefault();
+      document.getElementById('outputMsg').textContent = "Thank you for registering!";
+      formDirty = false;
+    }
+
+    // EX 6: Validate phone on blur
+    function validatePhone(input) {
+      const phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(input.value)) {
+        alert("Please enter a valid 10-digit phone number.");
+        input.focus();
+      }
+    }
+
+    // EX 6 & EX 8: Show fee and store preference
+    function showFee(sel) {
+      const fees = { "music": "$10", "sports": "$5", "workshop": "$15" };
+      document.getElementById('eventFee').textContent = "Fee: " + (fees[sel.value] || "$0");
+      localStorage.setItem('preferredEvent', sel.value);
+    }
+
+    // EX 8: Load preference on page load
+    window.onload = function() {
+      const pref = localStorage.getItem('preferredEvent');
+      if (pref) {
+        const dropdown = document.getElementById('eventType');
+        if (dropdown) {
+          dropdown.value = pref;
+          showFee(dropdown);
+        }
+      }
+    };
+
+    // EX 8: Clear localStorage & reset UI
+    function clearPrefs() {
+      localStorage.removeItem('preferredEvent');
+      sessionStorage.clear();
+      const dropdown = document.getElementById('eventType');
+      if (dropdown) dropdown.value = "";
+      document.getElementById('eventFee').textContent = "";
+      alert("Preferences cleared.");
+    }
+
+    // EX 6: Enlarge image on double-click
+    function enlargeImg(img) {
+      img.classList.toggle('enlarged');
+    }
+
+    // EX 6: Character count in feedback
+    function countChars(textarea) {
+      document.getElementById('charCount').textContent = textarea.value.length + " characters";
+    }
+
+    // EX 7: Video playback ready
+    function videoReady() {
+      document.getElementById('videoMsg').textContent = "Video ready to play";
+    }
+
+    // EX 7: Warn user before unloading unfinished form
+    let formDirty = false;
+    function markDirty() { formDirty = true; }
+    window.onbeforeunload = function(e) {
+      if (formDirty) {
+        e.preventDefault();
+        e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+      }
+    };
+
+    // EX 9: Geolocation to find nearby events
+    function findNearby() {
+      const geoResult = document.getElementById('geoResult');
+      if (!navigator.geolocation) {
+        geoResult.textContent = "Geolocation not supported.";
+        return;
+      }
+      geoResult.textContent = "Locating...";
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          geoResult.textContent = "Your coordinates: " + pos.coords.latitude.toFixed(4) + ", " + pos.coords.longitude.toFixed(4);
+        },
+        err => {
+          const errors = {
+            1: "Permission denied.",
+            2: "Position unavailable.",
+            3: "Request timed out."
+          };
+          geoResult.textContent = errors[err.code] || "Unknown error.";
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+      );
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- EX 2: Navigation and Linking -->
+  <nav>
+    <a href="#home" class="highlight">Home</a>
+    <a href="#events">Events</a>
+    <a href="#register">Register</a>
+    <a href="#video">Promo Video</a>
+    <a href="#map">Find Events</a>
+    <a href="help.html" target="_blank">Help</a>
+  </nav>
+
+  <main>
+    <!-- EX 3: Welcome Message with ID and Class -->
+    <section id="home">
+      <div id="welcomeBanner">
+        Welcome, <span class="highlight">Community Member!</span>
+        <span style="color:red;font-weight:bold;"> Special Offer: Free entry for first 50 signups!</span>
+      </div>
+    </section>
+
+    <!-- EX 4: Image Gallery for Community Events -->
+    <section id="events">
+      <h2>Upcoming & Past Events</h2>
+      <table>
+        <caption>Past Community Events</caption>
+        <tr>
+          <td><img src="event1.png" alt="Music Night" title="Music Night" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+          <td><img src="event2.png" alt="Sports Day" title="Tech Talk" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+          <td><img src="event3.png" alt="Art Workshop" title="Art Workshop" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+        </tr>
+        <tr>
+          <td><img src="event4.png" alt="Food Festival" title="Food Festival" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+          <td><img src="event5.png" alt="Book Fair" title="Book Fair" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+          <td><img src="event6.png" alt="Charity Run" title="Charity Run" class="gallery-img" ondblclick="enlargeImg(this)"></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- EX 5: Event Registration Form -->
+    <section id="register">
+      <h2>Register for an Event</h2>
+      <form onsubmit="showConfirmation(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required oninput="markDirty()">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required oninput="markDirty()">
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" placeholder="10-digit number" required onblur="validatePhone(this)" oninput="markDirty()">
+
+        <label for="date">Event Date:</label>
+        <input type="date" id="date" required oninput="markDirty()">
+
+        <label for="eventType">Event Type:</label>
+        <select id="eventType" required onchange="showFee(this); markDirty();">
+          <option value="">Select Event</option>
+          <option value="music">Music Night</option>
+          <option value="sports">Sports Day</option>
+          <option value="workshop">Art Workshop</option>
+        </select>
+        <span id="eventFee" class="highlight"></span>
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="3" placeholder="Any special requests?" onkeyup="countChars(this); markDirty();"></textarea>
+        <div id="charCount">0 characters</div>
+
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" class="btn secondary" onclick="clearPrefs()">Clear Preferences</button><br>
+        <output id="outputMsg"></output>
+      </form>
+    </section>
+
+    <!-- EX 6: Feedback Textarea with Key Events -->
+    <section id="feedback">
+      <h2>Event Feedback</h2>
+      <label for="feedbackText">Your Feedback:</label>
+      <textarea id="feedbackText" rows="3" placeholder="Share your experience..." onkeyup="countChars(this)"></textarea>
+      <div id="charCount">0 characters</div>
+    </section>
+
+    <!-- EX 7: Video Invite with Media Event oncanplay -->
+    <section id="video">
+      <h2>Event Promo Video</h2>
+      <video width="320" controls oncanplay="videoReady()">
+        <source src="promo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div id="videoMsg"></div>
+    </section>
+
+    <!-- EX 9: Geolocation for Event Mapping -->
+    <section id="map">
+      <h2>Find Nearby Events</h2>
+      <button class="btn" onclick="findNearby()">Find Nearby Events</button>
+      <div id="geoResult"></div>
+    </section>
+  </main>
+
+  <!-- EX 10: Footer and DevTools Debugging Area -->
+  <footer>
+    <hr>
+    <p>&copy; 2024 Local City Council. All rights reserved.</p>
+  </footer>
+</body>
+</html>

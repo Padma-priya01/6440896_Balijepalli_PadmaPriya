@@ -1,0 +1,221 @@
+<!-- Bootstrap 5 Exercises Solution Template -->
+<!-- Exercise 1.1: Basic HTML page with Bootstrap 5 CDN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 5 Exercises</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for Exercise 17) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Exercise 2.1: Bootstrap Directory Structure Explanation
+     css/: Contains Bootstrap's compiled CSS files (e.g., bootstrap.min.css) for styling.
+    js/: Contains Bootstrap's JavaScript files (e.g., bootstrap.bundle.min.js) for interactive components.
+     icons/: Contains Bootstrap Icons font files and CSS for icon usage.
+-->
+
+<!-- Exercise 2.2: Include Bootstrap's JavaScript plugins via bootstrap.bundle.min.js -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Exercise 3.1 & 3.2: Responsive Grid Layout -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="p-3 bg-light border">Column 1</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="p-3 bg-light border">Column 2</div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 mb-3">
+                <div class="p-3 bg-light border">Column 3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise 4.1: Two-column layout with sidebar -->
+    <div class="container my-4">
+        <div class="row">
+            <aside class="col-md-3 mb-3">
+                <div class="bg-secondary text-white p-3">Sidebar</div>
+            </aside>
+            <main class="col-md-9">
+                <div class="bg-white border p-3">Content Area</div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Exercise 4.2: Four-column layout -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-sm-3 mb-2"><div class="bg-info p-2 text-white">Col 1</div></div>
+            <div class="col-sm-3 mb-2"><div class="bg-info p-2 text-white">Col 2</div></div>
+            <div class="col-sm-3 mb-2"><div class="bg-info p-2 text-white">Col 3</div></div>
+            <div class="col-sm-3 mb-2"><div class="bg-info p-2 text-white">Col 4</div></div>
+        </div>
+    </div>
+
+    <!-- Exercise 5.1: Centered content in a row -->
+    <div class="container my-4">
+        <div class="row justify-content-center align-items-center" style="height:100px;">
+            <div class="col-6 text-center">
+                <span class="fw-bold">Centered Content</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise 5.2: Reordering columns -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-6 order-md-2 bg-warning p-2">Second on desktop</div>
+            <div class="col-md-6 order-md-1 bg-success p-2 text-white">First on desktop</div>
+        </div>
+    </div>
+
+    <!-- Exercise 6.1: Responsive navbar with flex utilities -->
+    <nav class="container d-flex flex-column flex-md-row justify-content-between align-items-center my-4">
+        <a class="navbar-brand fw-bold" href="#">Logo</a>
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+    </nav>
+
+    <!-- Exercise 6.2: Card layout with justify-content-between and align-items-center -->
+    <div class="container my-4">
+        <div class="card p-3 d-flex flex-row justify-content-between align-items-center">
+            <div>
+                <h5 class="card-title mb-0">Card Title</h5>
+                <p class="card-text">Card content goes here.</p>
+            </div>
+            <button class="btn btn-primary">Action</button>
+        </div>
+    </div>
+
+    <!-- Exercise 7.1 & 7.2: Typography utilities -->
+    <div class="container my-4">
+        <h1 class="display-1">Display 1</h1>
+        <p class="lead">This is a lead paragraph.</p>
+        <p class="text-muted">Muted text example.</p>
+        <p class="fw-bold">Bold text example.</p>
+        <p class="text-uppercase">uppercase text</p>
+        <p class="text-lowercase">LOWERCASE TEXT</p>
+        <p class="text-capitalize">capitalize each word</p>
+    </div>
+
+    <!-- Exercise 8.1: Registration form -->
+    <div class="container my-4">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control">
+            </div>
+            <div class="mb-3 input-group">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Twitter handle">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="check1">
+                <label class="form-check-label" for="check1">Accept terms</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+    <!-- Exercise 8.2: Login form with form-floating -->
+    <div class="container my-4">
+        <form>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="btn btn-success" type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Exercise 9.1: Buttons with contextual classes -->
+    <div class="container my-4">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-warning">Warning</button>
+        <button class="btn btn-info">Info</button>
+        <button class="btn btn-light">Light</button>
+        <button class="btn btn-dark">Dark</button>
+        <button class="btn btn-outline-primary">Outline Primary</button>
+        <button class="btn btn-outline-secondary">Outline Secondary</button>
+    </div>
+
+    <!-- Exercise 9.2: Button groups and toggle buttons -->
+    <div class="container my-4">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary">Left</button>
+            <button type="button" class="btn btn-primary">Middle</button>
+            <button type="button" class="btn btn-primary">Right</button>
+        </div>
+        <div class="btn-group mt-3" role="group" aria-label="Toggle button group">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <label class="btn btn-outline-success" for="btncheck1">Toggle 1</label>
+            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+            <label class="btn btn-outline-success" for="btncheck2">Toggle 2</label>
+        </div>
+    </div>
+
+    <!-- Exercise 10.1: Responsive navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light my-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Exercise 10.2: Tabbed navigation -->
+    <div class="container my-4">
+        <ul class="nav nav-tabs mb-3">
+            <li class="nav-item"><a class="nav-link active" href="#">Tab 1</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Tab 2</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Tab 3</a></li>
+        </ul>
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link active" href="#">Pill 1</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Pill 2</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Pill 3</a></li>
+        </ul>
+    </div>
+
+    <!-- Exercise 11.1: Profile card -->
+    <div class="container my-4">
+        <div class="card" style="width: 18rem;">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Profile">
+            <div class="card-body">
+                <h5 class="card-title">Jane

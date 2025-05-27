@@ -1,0 +1,244 @@
+/* ===========================
+    styles.css
+    Local Community Event Portal
+    =========================== */
+
+/* 1. CSS Reset (Universal Selector) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Body and Background Styles */
+/* Set fallback color and background image */
+body {
+  background: #f5f7fa url('images/community-bg.jpg') no-repeat center top;
+  background-size: cover;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #222;
+  min-height: 100vh;
+}
+
+/* 3. Header Styles */
+#mainHeader {
+  /* Banner styling using ID selector */
+  background: linear-gradient(90deg, #007BFF 0%, #00C6FF 100%);
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* 4. Section Header Styles */
+section > h2 {
+  /* Gradient text for section headers */
+  background: linear-gradient(90deg, #007BFF 40%, #00C6FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* 5. Event Card Styles */
+.eventCard {
+  /* Card container using class selector */
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s;
+}
+.eventCard:hover {
+  box-shadow: 0 4px 16px rgba(0,123,255,0.15);
+}
+
+/* 6. Grouped Selector for h3 and p */
+h3, p {
+  /* Shared styles for subheadings and paragraphs */
+  color: #222;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* 7. Main CTA Button */
+.cta-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* 8. Typography Enhancements */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Section for event descriptions */
+.event-description {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  text-align: justify;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+  color: rgba(34,34,34,0.85);
+}
+
+/* 9. Link Styles */
+a:link {
+  color: #007BFF;
+  text-decoration: none;
+}
+a:visited {
+  color: #5a5a5a;
+}
+a:hover, a:active {
+  color: #00C6FF;
+  text-decoration: underline;
+}
+
+/* 10. Navigation Menu Styles */
+nav ul {
+  list-style-type: none;
+  list-style-position: inside;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+nav ul li {
+  margin: 0;
+  padding: 0.5rem 0;
+}
+nav ul li a {
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+nav ul li a:hover {
+  background: rgba(0,123,255,0.08);
+}
+
+/* 11. List Styles for Event Lists */
+.event-list {
+  list-style-type: square;
+  list-style-position: outside;
+  margin-left: 2rem;
+}
+.event-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* 12. Table Styles */
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: #fff;
+}
+.event-table th, .event-table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.event-table th {
+  background: #007BFF;
+  color: #fff;
+}
+.event-table tr:nth-child(even) {
+  background: #f0f8ff;
+}
+
+/* 13. Box Model for Event Cards */
+.eventCard {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #007BFF;
+  outline: none;
+}
+.eventCard.selected {
+  outline: 3px solid #00C6FF;
+}
+
+/* 14. Form Field Highlight */
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #00C6FF;
+}
+
+/* 15. Visibility vs Display Example */
+.temp-hidden {
+  visibility: hidden;
+}
+.temp-none {
+  display: none;
+}
+
+/* 16. Multi-Column News Section */
+.news-article {
+  column-count: 2;
+  column-gap: 30px;
+  column-rule: 1px solid gray;
+  padding: 1.5rem 0;
+}
+
+/* 17. Responsive Design (Media Queries) */
+@media (max-width: 768px) {
+  /* Stack nav links vertically */
+  nav ul {
+     flex-direction: column;
+     gap: 0.5rem;
+     align-items: flex-start;
+  }
+  /* Reduce image and font sizes */
+  body {
+     font-size: 90%;
+  }
+  section > h2 {
+     font-size: 1.3rem;
+  }
+  .eventCard {
+     padding: 1rem;
+     margin: 1rem 0;
+  }
+  .event-table th, .event-table td {
+     padding: 0.5rem;
+     font-size: 0.95rem;
+  }
+  .news-article {
+     column-count: 1;
+     column-gap: 0;
+  }
+  img, .eventCard img {
+     max-width: 100%;
+     height: auto;
+  }
+}
+
+/* 18. Flexbox Layout Example */
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+.sidebar, .content-area {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+/* End of styles.css */
